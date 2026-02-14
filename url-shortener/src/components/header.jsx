@@ -3,6 +3,8 @@ import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuGroup, DropdownMenuLabel, DropdownMenuItem, DropdownMenuSeparator } from "./ui/dropdown-menu";
 import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
+import { LogOut } from "lucide-react";
+import { LinkIcon } from "lucide-react";
 
 
 const Header = () => {
@@ -12,8 +14,7 @@ const Header = () => {
   return (
     <nav className="py-4 px-9 flex justify-between items-center" >
         <div className="flex items-center cursor-pointer" onClick={() => navigate("/")}>
-      <img src="/Quickshort-logo.png" alt="Quickshort-Logo" className="h-18 " />
-      <span className="text-xl font-bold">URL Shortener</span>
+      <img src="/Quickshort-logo.png" alt="Quickshort-Logo" className="h-20" /> 
     </div>
 
     <div>
@@ -21,7 +22,7 @@ const Header = () => {
         <Button onClick={() => navigate("/auth")} >Login</Button>
         :
         <DropdownMenu>
-  <DropdownMenuTrigger asChild>
+  <DropdownMenuTrigger asChild className="w-11 h-11 rounded-full cursor-pointer overflow-hidden">
     <Avatar>
   <AvatarImage src="https://github.com/shadcn.png" />
   <AvatarFallback>CN</AvatarFallback>
@@ -30,13 +31,17 @@ const Header = () => {
   <DropdownMenuContent>
     <DropdownMenuGroup>
       <DropdownMenuLabel>My Account</DropdownMenuLabel>
-      <DropdownMenuItem>Profile</DropdownMenuItem>
-      <DropdownMenuItem>Billing</DropdownMenuItem>
+
     </DropdownMenuGroup>
     <DropdownMenuGroup>
       <DropdownMenuSeparator />
-      <DropdownMenuItem>Team</DropdownMenuItem>
-      <DropdownMenuItem>Subscription</DropdownMenuItem>
+      <DropdownMenuItem>
+        <LinkIcon className="mr-2 h-4 w-4 " />My Links
+        </DropdownMenuItem>
+      <DropdownMenuItem className="text-red-400">
+        <LogOut className="mr-2 h-4 w-4 " />
+       <span>Logout</span> 
+        </DropdownMenuItem>
     </DropdownMenuGroup>
   </DropdownMenuContent>
 </DropdownMenu>
@@ -47,3 +52,5 @@ const Header = () => {
 };
 
 export default Header;
+
+
