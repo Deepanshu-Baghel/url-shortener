@@ -1,5 +1,5 @@
 
-import { Route } from 'lucide-react'
+
 import './App.css'
 import LandingPage from './pages/landing'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
