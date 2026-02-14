@@ -1,11 +1,24 @@
 
+import { Route } from 'lucide-react'
 import './App.css'
+import LandingPage from './pages/landing'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import AppLayout from './Layout/app-layout'
+import Dashboard from './pages/dashboard'
+import AuthPage from './pages/auth'
+import LinkPage from './pages/link'
+import RedirectLink from './pages/redirect-link'
 
 const router = createBrowserRouter([
   {
       Element: <AppLayout/>,
       children: [
-          { path: "/", element: <LandingPage /> },
+          { path: "/", element: <LandingPage/> },
+          { path: "/dashboard", element: <Dashboard/> },
+          { path: "/auth", element: <AuthPage/> },
+          { path: "/link", element: <LinkPage/> },
+          { path: "/redirect/:shortUrl", element: <RedirectLink/> }
+
       ]
   }
 ])
@@ -13,12 +26,7 @@ const router = createBrowserRouter([
 function App() {
 
 
-  return (
-    <div className="App">
-      <h1 className="text-3xl font-bold">URL Shortener</h1>
-      <p>Welcome to the URL Shortener app! This application allows you to easily shorten long URLs into more manageable and shareable links. Simply enter a long URL, and we'll generate a shorter version for you to use. Whether you're sharing links on social media, in emails, or anywhere else, our URL shortener makes it easy to share your content without the hassle of long URLs.</p>
-    </div>
-  )
+  return <RouterProvider router={router} />
 }
 
 export default App
