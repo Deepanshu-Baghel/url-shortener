@@ -11,7 +11,7 @@ import RedirectLink from './pages/redirect-link'
 
 const router = createBrowserRouter([
   {
-      Element: <AppLayout/>,
+      element: <AppLayout/>,
       children: [
           { path: "/", element: <LandingPage/> },
           { path: "/dashboard", element: <Dashboard/> },

@@ -1,15 +1,18 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-const AppLayout = ({ children }) => {
+
+const AppLayout = () => {
   return (
     <div >
-      <main>
+      <main className="min-h-screen container " >
         {/*Header*/}
         <Outlet/>
 
       </main>
-      {/*Footer*/}
+      <div className="text-center p-10 bg-gray-800 mt-10 text-white">
+        made with ❤️ by <a href="codewithdeepanshu.me" className="text-blue-500 hover:underline">codewithdeepanshu</a>
+      </div>
     </div>
   );
 };
