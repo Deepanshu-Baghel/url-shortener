@@ -1,16 +1,29 @@
 import { Input } from '@/components/ui/input';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import React from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 const LandingPage = () => {
+
+const[longUrl,setLongUrl]=useState();
+const navigate = useNavigate();
+const handleShorten = (e) => {
+  e.preventDefault();
+  navigate(`/auth?createNew=${longUrl}`);
+};
+
+
   return (
     <div className="flex flex-col items-center justify-center text-white">
        <h2 className="my-10 sm:my-20 text-3xl sm:text-5xl lg:text-7xl text-white font-extrabold text-center">
          The only URL shortener<br/> you&rsquo;ll ever need.👇</h2>
-       <form className="sm:h-14 flex flex-col sm:flex-row w-full md:w-2/4 items-center gap-2" >
+       <form onSubmit={handleShorten}
+       className="sm:h-14 flex flex-col sm:flex-row w-full md:w-2/4 items-center gap-2" >
         <Input type="url" placeholder="Enter your long URL here" 
-       // onChange={} 
+        value={longUrl}
+       onChange={(e)=> setLongUrl(e.target.value)} 
         className="h-full flex-1 py-4 px-4 " />
         <button type='submit' variant="destructive"
         className=" px-4 py-4 bg-white text-black rounded-md flex items-center gap-2 ">
@@ -23,23 +36,27 @@ const LandingPage = () => {
 
        <Accordion type="multiple" collapsible className="w-full md:px-11" defaultValue="item-1">
   <AccordionItem value="item-1">
-    <AccordionTrigger>Is it accessible?</AccordionTrigger>
+    <AccordionTrigger>How does URL shortening work?</AccordionTrigger>
     <AccordionContent>
-      Yes. It adheres to the WAI-ARIA design pattern.
+      Simply paste your long URL into the input box and click "Shorten URL". 
+      Our service will generate a shortened link that redirects to your original URL.
     </AccordionContent>
   </AccordionItem>
     <AccordionItem value="item-2">
-    <AccordionTrigger>Is it styled?</AccordionTrigger>
+    <AccordionTrigger>Is it free to use?</AccordionTrigger>
     <AccordionContent>
-      Yes. It comes with default styles that matches the other components.
+      Yes! Our basic URL shortening service is completely free. 
+      Create an account to access additional features like custom links and analytics.
     </AccordionContent>
   </AccordionItem>
     <AccordionItem value="item-3">
-    <AccordionTrigger>Is it animated?</AccordionTrigger>
+    <AccordionTrigger>Can I track my shortened URLs?</AccordionTrigger>
     <AccordionContent>
-      Yes. It comes with smooth open and close animations.
+      Absolutely! You can track click statistics, geographic data, and referral sources 
+      for all your shortened URLs from your dashboard.
     </AccordionContent>
   </AccordionItem>
+  
 </Accordion>
 
 
