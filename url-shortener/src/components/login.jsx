@@ -132,6 +132,7 @@ import Error from "./error";
 import * as yup from "yup";
 import useFetch from "@/hooks/use-fetch";
 import { login } from "@/DB/apiAuth";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const LoginPage = () => {
 
@@ -141,6 +142,11 @@ const LoginPage = () => {
     email: "",
     password: ""
   });
+
+
+  const navigate = useNavigate();
+  let[searchPrarams] = useSearchParams();
+  const longUrl = searchPrarams.get("createNew");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -153,11 +159,12 @@ const LoginPage = () => {
   const { loading, error, data, fn: loginFn } = useFetch(login);
 
   useEffect(() => {
-    console.log({ error, data });
+    // console.log({ error, data });
 
-    if (data) {
+    if (error === null && data) {
       // ✅ Handle successful login here (redirect etc.)
-      console.log("Login successful");
+      console.log("Login successful", data);
+      navigate(`/dashboard?${longUrl ? `createNew=${longUrl}` : ""}`);
     }
   }, [error, data]);
 
